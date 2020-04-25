@@ -13,13 +13,36 @@ let appData ={
         savings: false
     };
 
-let ans1 = prompt("Введите обязательную статью расходов в этом месяце", "Нету");
-let ans2 = prompt("Во сколько обойдется?","0");
+let i = 0;
 
-expenses = {
-    ans1 : ans2
-};
+do{
+    let a = prompt("Введите обязательную статью расходов в этом месяце", ""),
+        b = prompt("Во сколько обойдется?","0");
+    if(    (typeof(a)) === 'string' 
+        && (typeof(a)) != null && a != ''
+        && (typeof(b)) != null && b != ''
+        && a.length < 50){
+            console.log("done");
+            appData.expenses[a] = b;
+            i++;
+        } else {
+            alert("Некорректно введено! Попробуйте еще раз");
+        }
 
-alert("Ващ бюджет на 1 день: " + (money - ans2)/30);
+}while(i<2);
+
+appData.moneyPerDay = appData.budget/30;
+
+alert("Ваш бюджет на 1 день: " + (appData.moneyPerDay));
+
+if (appData.moneyPerDay < 100){
+    console.log("Small");
+} else if (appData.moneyPerDay >100 && appData.moneyPerDay < 2000){
+    console.log("Medium");
+} else if (appData.moneyPerDay > 2000){
+    console.log("Big");
+} else {
+    console.log("Mistake!");
+}
 
 }
